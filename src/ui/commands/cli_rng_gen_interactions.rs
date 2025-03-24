@@ -70,7 +70,7 @@ pub fn cli_rng_gen_interactions(matches : &ArgMatches) -> (Vec<String>,u32) {
 
             let num_tries : u32 = match matches.value_of("num_tries") {
                 None => {
-                    number_of_interactions*3
+                    number_of_interactions*10
                 },
                 Some( as_str ) => {
                     as_str.trim().parse::<u32>().unwrap()
@@ -115,6 +115,22 @@ pub fn cli_rng_gen_interactions(matches : &ArgMatches) -> (Vec<String>,u32) {
             let probas = if matches.is_present("probas") {
                 let extracted = matches.value_of("probas").unwrap();
                 match extracted {
+                    "transformer1_interaction" => {
+                        probas_name = "transformer1_interaction";
+                        InteractionSymbolsProbabilities::transformer1_interaction()
+                    },
+                    "transformer2_interaction" => {
+                        probas_name = "transformer2_interaction";
+                        InteractionSymbolsProbabilities::transformer2_interaction()
+                    },
+                    "transformer1_regex" => {
+                        probas_name = "transformer1_regex";
+                        InteractionSymbolsProbabilities::transformer1_regex()
+                    },
+                    "transformer2_regex" => {
+                        probas_name = "transformer2_regex";
+                        InteractionSymbolsProbabilities::transformer2_regex()
+                    },
                     "conservative" => {
                         probas_name = "conservative";
                         InteractionSymbolsProbabilities::conservative()

@@ -440,7 +440,7 @@ subcommands:
                   required: false
                   short: p
                   takes_value: true
-                  help: probability distributions of interaction language symbols (default or conservative)
+                  help: probability distributions of interaction language symbols (default, transformer1_interactions, transformer1_regex, transformer2_interactions or transformer2_regex)
               - max_depth:
                     required: false
                     short: d

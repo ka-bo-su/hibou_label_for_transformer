@@ -2,3 +2,5 @@
 /.idea
 *.iml
 Cargo.lock 
+tmp/
+*.h*f

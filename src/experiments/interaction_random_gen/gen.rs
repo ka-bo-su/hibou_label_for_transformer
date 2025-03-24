@@ -53,6 +53,18 @@ pub fn generate_random_action(signature : &GeneralContext,rng : &mut StdRng) -> 
     }
 }
 
+pub fn generate_random_emission(signature : &GeneralContext,rng : &mut StdRng) -> Interaction {
+    let ms_id = rng.gen_range(0..signature.get_ms_num());
+    let mut lifelines : Vec<usize> = (0..signature.get_lf_num()).collect();
+    lifelines.shuffle(rng);
+    let emission = EmissionAction::new(
+        *lifelines.get(0).unwrap(),
+        ms_id,
+        CommunicationSynchronicity::Asynchronous,vec![]
+    );
+    Interaction::Emission(emission)
+}
+
 pub fn generate_random_pattern(signature : &GeneralContext,
                                is_broadcast : bool,
                                rng : &mut StdRng) -> Interaction {
@@ -83,12 +95,19 @@ pub fn generate_random_interaction(probas : &InteractionSymbolsProbabilities,
                                    signature : &GeneralContext,
                                    rng : &mut StdRng) -> Interaction {
     if depth >= max_depth {
-        return generate_random_action(signature,rng);
+        if probas.ordered_symbols.contains(&InteractionGenerationSymbol::Transmission) {
+            return generate_random_pattern(signature,false, rng);
+        } else {
+            return generate_random_emission(signature,rng);
+        }
     }
     let mut symbol = probas.get_random_symbol(rng);
     match symbol {
         InteractionGenerationSymbol::Transmission => {
             generate_random_pattern(signature,false,rng)
+        },
+        InteractionGenerationSymbol::Emission => {
+            generate_random_emission(signature,rng)
         },
         InteractionGenerationSymbol::Broadcast => {
             generate_random_pattern(signature,true,rng)

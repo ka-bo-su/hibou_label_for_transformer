@@ -50,33 +50,38 @@ pub fn generate_canonical_random_interaction(gen_ctx : &GeneralContext,
              imetrics.depth,
              isymbs
     );
-
-    let ican = canonize_interaction(&gen_ctx,&i, DefaultCanonizationProcess::BasicWithToSeq);
-    let icanmetrics = InteractionMetrics::extract_from_interaction(&ican);
-    let icansymbs = icanmetrics.symbols.iter().fold(0_u32,|x,(_,c)| x + c);
-    println!("canonized to interaction of depth {:} with {:} symbols",
-             icanmetrics.depth,
-             icansymbs
-    );
-    if icansymbs < min_symbols {
+    if isymbs < min_symbols {
         println!("not enough symbols");
         return None;
     }
-    if icansymbs > isymbs {
-        println!("canonized has more symbols !!");
-        draw_interaction(&gen_ctx,
-                         &i,
-                         &InteractionGraphicalRepresentation::AsSequenceDiagram,
-                         &"temp".to_string(),
-                         &"canerror".to_string(),
-                         &"init".to_string());
-        draw_interaction(&gen_ctx,
-                         &ican,
-                         &InteractionGraphicalRepresentation::AsSequenceDiagram,
-                         &"temp".to_string(),
-                         &"canerror".to_string(),
-                         &"canned".to_string());
-        panic!();
-    }
-    Some(ican)
+    Some(i)
+
+    // let ican = canonize_interaction(&gen_ctx,&i, DefaultCanonizationProcess::BasicWithToSeq);
+    // let icanmetrics = InteractionMetrics::extract_from_interaction(&ican);
+    // let icansymbs = icanmetrics.symbols.iter().fold(0_u32,|x,(_,c)| x + c);
+    // println!("canonized to interaction of depth {:} with {:} symbols",
+    //          icanmetrics.depth,
+    //          icansymbs
+    // );
+    // if icansymbs < min_symbols {
+    //     println!("not enough symbols");
+    //     return None;
+    // }
+    // if icansymbs > isymbs {
+    //     println!("canonized has more symbols !!");
+    //     draw_interaction(&gen_ctx,
+    //                      &i,
+    //                      &InteractionGraphicalRepresentation::AsSequenceDiagram,
+    //                      &"temp".to_string(),
+    //                      &"canerror".to_string(),
+    //                      &"init".to_string());
+    //     draw_interaction(&gen_ctx,
+    //                      &ican,
+    //                      &InteractionGraphicalRepresentation::AsSequenceDiagram,
+    //                      &"temp".to_string(),
+    //                      &"canerror".to_string(),
+    //                      &"canned".to_string());
+    //     panic!();
+    // }
+    // Some(ican)
 }
