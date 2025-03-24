@@ -15,7 +15,7 @@ limitations under the License.
 */
 
 
-pub static SYNTAX_EMPTY: &'static str = "∅";
+pub static SYNTAX_EMPTY: &'static str = "o";
 pub static SYNTAX_STRICT: &'static str = "strict";
 pub static SYNTAX_SEQ: &'static str = "seq";
 pub static SYNTAX_PAR: &'static str = "par";
