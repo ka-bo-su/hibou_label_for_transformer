@@ -197,19 +197,15 @@ impl InteractionSymbolsProbabilities {
     pub fn transformer1_interaction() -> InteractionSymbolsProbabilities {
         let map = hashmap!{
             InteractionGenerationSymbol::Empty        => 0.025,
-            InteractionGenerationSymbol::Strict       => 0.05,
-            // total 0.075
-            InteractionGenerationSymbol::Seq          => 0.35,
+            InteractionGenerationSymbol::Seq          => 0.4,
             // total 0.425
             InteractionGenerationSymbol::Par          => 0.1,
             // total 0.525
-            InteractionGenerationSymbol::LoopS        => 0.1,
-            // total 0.625
-            InteractionGenerationSymbol::LoopW        => 0.1,
-            // total 0.725
+            InteractionGenerationSymbol::LoopW        => 0.15,
+            // total 0.675
             InteractionGenerationSymbol::Alt          => 0.1,
-            // total 0.825
-            InteractionGenerationSymbol::Transmission => 0.175
+            // total 0.775
+            InteractionGenerationSymbol::Transmission => 0.225
             // total 1.0
         };
         Self::from_map(map).unwrap()
@@ -233,19 +229,15 @@ impl InteractionSymbolsProbabilities {
     pub fn transformer2_interaction() -> InteractionSymbolsProbabilities {
         let map = hashmap!{
             InteractionGenerationSymbol::Empty        => 0.025,
-            InteractionGenerationSymbol::Strict       => 0.05,
-            // total 0.075
-            InteractionGenerationSymbol::Seq          => 0.35,
+            InteractionGenerationSymbol::Seq          => 0.4,
             // total 0.425
             InteractionGenerationSymbol::Par          => 0.1,
             // total 0.525
-            InteractionGenerationSymbol::LoopS        => 0.1,
-            // total 0.625
-            InteractionGenerationSymbol::LoopW        => 0.1,
-            // total 0.725
+            InteractionGenerationSymbol::LoopW        => 0.15,
+            // total 0.675
             InteractionGenerationSymbol::Alt          => 0.1,
-            // total 0.825
-            InteractionGenerationSymbol::Transmission => 0.175
+            // total 0.775
+            InteractionGenerationSymbol::Transmission => 0.225
             // total 1.0
         };
         Self::from_map(map).unwrap()
